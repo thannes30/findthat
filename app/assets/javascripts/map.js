@@ -10,6 +10,9 @@ $(function() {
   var icon = "";
   var address = "";
 
+  //added this trying to get map to show up.
+  // map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
   $("#query").click(function(){
     $(this).val("");
   });
@@ -26,6 +29,7 @@ $(function() {
     }
   });
 
+  //on submit, get user's location
   $("#searchform").submit(function(event){
     event.preventDefault();
     if (!lat) {
@@ -35,12 +39,14 @@ $(function() {
     }
   });
 
+  //get location, save it to lat, long
   function getLocation(location) {
       lat = location.coords.latitude;
       lng = location.coords.longitude;
     getVenues();
   }
 
+  //search foursquare for my search term around my location
   function getVenues() {
     $.ajax({
         type: "GET",
@@ -59,7 +65,7 @@ $(function() {
         },
         map = new google.maps.Map(document.getElementById('map'), myOptions);
 
-        // Build markers and elements for venues returned.
+        // Build markers and elements for venues returned
         $.each( dataobj, function() {
           if (this.venue.categories[0]) {
             str = this.venue.categories[0].icon.prefix;
