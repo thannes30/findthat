@@ -1,0 +1,201 @@
+@import "twitter/bootstrap/bootstrap";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  min-height: 100%;
+  background-color: lightgrey;
+}
+body, nav, h1, h3, p {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'futura';
+  padding-bottom: 5%;
+  margin: 0 0 50px;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+}
+nav {
+  float:right;
+  height: 75px;
+  color: gray;
+}
+.title {
+  float: left;
+  margin-left: 12%;
+  padding-top: 15px;
+  font-size: 2.2em;
+}
+.not_logged_in {
+  font-size:.8em;
+  float: right;
+  padding-top:26px;
+  margin-right: 12%;
+}
+a {
+  text-decoration: none;
+  color: gray;
+}
+.login {
+  float: left;
+  padding: 0;
+  font-size: 1em;
+}
+.loginform {
+  width: 30em;
+}
+h3 {
+  color: gray;
+  cursor: pointer;
+}
+.loginform input {
+  height: 1.9em;
+  border: none;
+  width: 25%;
+  padding: 0 2%;
+  font-size: 1em;
+}
+#username {
+  border-radius: 1px;
+}
+#password {
+  border-radius: 1px;
+}
+.loginform .submitButton {
+  width: 18%;
+  border-radius: 1px;
+  cursor: pointer;
+}
+.signup {
+  float: right;
+  font-size: 1em;
+  padding-left: .5em;
+  border-left: 3px solid #fff;
+}
+
+.login-button {
+  font-size: 1.2em;
+  padding-right: .5em;
+}
+
+.signup-container {
+  text-align: center;
+  z-index: 2;
+  width: 25%;
+  min-width: 150px;
+  position: fixed;
+  background-color: gray;
+  top: 32%;
+  left: 35%;
+  border: 3px solid gray;
+  padding: 0 1% 1% 0;
+  border-radius: 5px;
+}
+.signup-container h1 {
+  margin-bottom: 5%;
+}
+.new_user input {
+  height: 2em;
+  width: 57%;
+  border: 1px solid #0e700e;
+  border-radius: .3em;
+  margin: 3% 0;
+  padding: 1%;
+  font-size: .7em;
+}
+.new_user input[type="submit"] {
+  height: 3em;
+  width: 20%;
+  background-color: #0e700e;
+  border: none;
+  margin: 5% auto 0;
+  padding: 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: .3em;
+}
+
+.close-signup {
+  background-color: #eee;
+  width: 3%;
+  height: 3%;
+  padding: 0 1% 0%;
+  font-size: 1.5em;
+  float: right;
+  margin: 4% 0;
+  cursor: pointer;
+}
+
+.logged_in {
+  padding-top: 28px;
+  margin-right: 12%;
+  float: right;
+  font-size: 1.3em;
+  font-size:.8em;
+}
+
+.logged_in_as {
+  float: right;
+  color: white;
+}
+
+.logged_in_as a {
+  text-decoration: none;
+}
+
+.logged_in_as a:visited {
+  color: white;
+}
+
+.logout {
+  float: right;
+  margin-left: 10px;
+  border-left: solid white 2px;
+  padding-left: 10px;
+  margin-right: 10px;
+}
+
+.logout a {
+  text-decoration: none;
+}
+
+.logout a:visited {
+  color: gray;
+}
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
+
+// Font Awesome
+@import "fontawesome/font-awesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;

@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @businesses = current_user.businesses
-    @likes = current_user.likes
+    # @businesses = current_user.businesses
+    # @likes = current_user.likes
   end
 
 
