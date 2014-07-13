@@ -91,7 +91,7 @@ $(function() {
             rating = '<span class="rating">'+this.venue.rating+'</span>';
           }
 
-          appendeddatahtml = '<div class="venue"><h2><span>'+this.venue.name+'<img class="icon" src="'+icon+'"> '+rating+'</span></h2>'+address+phone+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p></div>';
+          appendeddatahtml = '<div class="venue"><h3><span>'+this.venue.name+rating+'</span></h3>'+address+phone+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button>Check In</button><button>Like</button></div>';
           $("#venues").append(appendeddatahtml);
 
           // Build markers
