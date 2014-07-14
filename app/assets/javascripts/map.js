@@ -58,8 +58,8 @@ $(function() {
 
         // Rebuild the map using data.
         var myOptions = {
-          zoom:11,
-          center: new google.maps.LatLng(lat,lng-.2),
+          zoom:14,
+          center: new google.maps.LatLng(lat,lng-.02),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           panControl: false
         },
@@ -75,7 +75,7 @@ $(function() {
             icon = "";
           }
 
-          if (this.venue.categories.url){
+          if (this.venue.url){
             url = this.venue.url;
           } else {
             url = "";
@@ -109,7 +109,7 @@ $(function() {
             rating = '<span class="rating">'+this.venue.rating+'</span>';
           }
 
-          appendeddatahtml = '<div class="venue"><h3>'+'<a href='+url+'target="_blank">'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
+          appendeddatahtml = '<div class="venue"><h3>'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
           $("#venues").append(appendeddatahtml);
 
           // Build markers

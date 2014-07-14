@@ -39,14 +39,21 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'pry-rails', group: :development
+gem 'looksee', group: :development
+gem 'awesome_print', group: :development
+gem 'hirb', group: :development
 
 gem 'sorcery'
-
 
 #bootstrap stuff
 gem 'less-rails'
 gem 'therubyracer',  group: :development
 gem 'twitter-bootstrap-rails'
 
+gem 'bootstrap-sass', '~> 3.2.0'
+
 group :assets do
+
 end
+
