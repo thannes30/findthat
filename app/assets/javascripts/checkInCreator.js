@@ -5,15 +5,15 @@
 
   function checkIn(obj){
     // debugger;
-    var newVenue = saveVenue();
+    var newVenue = {'name': obj};
     var currentUserId = $('.current-user-id').val();
       $.ajax({
         url: '/checkins',
         method: 'post',
         dataType: 'json',
-        data: {venue: newVenue},
+        data: {checkin: obj},
         success: function(data){
-          alert('Weve got you checked in.');
+          console.log(obj);
         }
       })
     }

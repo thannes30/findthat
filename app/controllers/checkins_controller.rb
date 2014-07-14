@@ -9,7 +9,7 @@ class CheckinsController < ApplicationController
   private
 
   def checkin_params
-    params.require(:checkin).permit(:name)
+    params.require(:checkin).permit(:name, :venue_id)
   end
 
 end
