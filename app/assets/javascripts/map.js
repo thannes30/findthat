@@ -75,6 +75,12 @@ $(function() {
             icon = "";
           }
 
+          if (this.venue.categories.url){
+            url = this.venue.url;
+          } else {
+            url = "";
+          }
+
           if (this.venue.contact.formattedPhone) {
             phone = "Phone:"+this.venue.contact.formattedPhone;
           } else {
@@ -103,7 +109,7 @@ $(function() {
             rating = '<span class="rating">'+this.venue.rating+'</span>';
           }
 
-          appendeddatahtml = '<div class="venue"><h3><span>'+this.venue.name+rating+'</span></h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
+          appendeddatahtml = '<div class="venue"><h3>'+'<a href='+url+'target="_blank">'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
           $("#venues").append(appendeddatahtml);
 
           // Build markers
@@ -126,27 +132,6 @@ $(function() {
         });
       }
     });
-  }
-
-  function saveVenue(){
-    //get name of venue, and save it to the user's venues
-  }
-
-  function checkIn(){
-    $('.check-in-button').on('click', function(e){
-      // e.preventDefault();
-    var newVenue = saveVenue();
-    var currentUserId = $('.current-user-id').val();
-      $.ajax({
-        url: '/venues',
-        method: 'post',
-        dataType: 'json',
-        data: {venue: newVenue},
-        success: function(data){
-
-        }
-      })
-    })
   }
 
   function mapbuild() {
