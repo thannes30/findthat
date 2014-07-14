@@ -9,5 +9,14 @@ Rails.application.routes.draw do
   post '/users' => 'users#create', as: 'users'
   get '/profile' => 'users#profile', as: 'profile'
 
+  get '/checkins' => 'checkins#index'
+  post '/checkins' => 'checkins#create'
+
+  post '/venues/like' => 'venues#like'
+
+  get '/tips' => 'tips#index'
+  post '/tips' => 'tips#create'
+
+
 
 end

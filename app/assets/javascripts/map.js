@@ -111,6 +111,13 @@ $(function() {
 
           appendeddatahtml = '<div class="venue"><h3>'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
           $("#venues").append(appendeddatahtml);
+          $('#venues .check-in-button').click(function(e){
+            var object = {};
+            object.name = $(e.target.parentElement).find('h3 a').html();
+            checkIn(object);
+            // debugger;
+          });
+
 
           // Build markers
           var markerImage = {
@@ -141,7 +148,7 @@ $(function() {
     center: new google.maps.LatLng(38.962612,-99.080879),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     panControl: false
-    },
+    },f
     map = new google.maps.Map(document.getElementById('map'), myOptions);
   }
 

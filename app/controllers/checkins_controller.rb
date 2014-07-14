@@ -1,15 +1,15 @@
-class CheckinController < ApplicationController
+class CheckinsController < ApplicationController
 
   def create
     checkin = Checkin.create(checkin_params)
-    # current_user.checkins << checkin
+    current_user.checkins << checkin
     render :json => checkin.to_json
   end
 
   private
 
   def checkin_params
-    params.require(:checkin).permit(:foursquare_venue_id)
+    params.require(:checkin).permit(:name)
   end
 
 end

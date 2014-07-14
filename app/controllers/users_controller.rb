@@ -12,18 +12,9 @@ class UsersController < ApplicationController
   end
 
   def profile
-    # @businesses = current_user.businesses
-    # @likes = current_user.likes
+    @checkins = current_user.checkins
+    @likes = current_user.likes
   end
-
-
-  # def destroy
-  #   @user.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
 
   private
 
