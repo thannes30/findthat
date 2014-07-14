@@ -82,21 +82,33 @@ $(function() {
           }
 
           if (this.venue.location.address) {
-            address = '<p class="subinfo">'+this.venue.location.address+'<br>';
+            address = '<p class="subinfo">'+this.venue.location.address;
           } else {
             address = "";
+          }
+
+          if (this.venue.location.city){
+            city = ', '+this.venue.location.city+'<br>';
+          } else {
+            city = "";
+          }
+
+          if (this.venue.hours){
+            hours = this.venue.hours.status;
+          } else {
+            hours = "";
           }
 
           if (this.venue.rating) {
             rating = '<span class="rating">'+this.venue.rating+'</span>';
           }
 
-          appendeddatahtml = '<div class="venue"><h3><span>'+this.venue.name+rating+'</span></h3>'+address+phone+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button>Check In</button><button>Like</button></div>';
+          appendeddatahtml = '<div class="venue"><h3><span>'+this.venue.name+rating+'</span></h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
           $("#venues").append(appendeddatahtml);
 
           // Build markers
           var markerImage = {
-          url: 'images/hiker-extra-small.png',
+          url: "assets/hiker-extra-small.png",
           scaledSize: new google.maps.Size(24, 24),
           origin: new google.maps.Point(0,0),
           anchor: new google.maps.Point(24/2, 24)
@@ -114,6 +126,27 @@ $(function() {
         });
       }
     });
+  }
+
+  function saveVenue(){
+    //get name of venue, and save it to the user's venues
+  }
+
+  function checkIn(){
+    $('.check-in-button').on('click', function(e){
+      // e.preventDefault();
+    var newVenue = saveVenue();
+    var currentUserId = $('.current-user-id').val();
+      $.ajax({
+        url: '/venues',
+        method: 'post',
+        dataType: 'json',
+        data: {venue: newVenue},
+        success: function(data){
+
+        }
+      })
+    })
   }
 
   function mapbuild() {

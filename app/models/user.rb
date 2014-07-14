@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :venues
+  has_many :checkins
+  has_many :venues, through: :checkins
   has_many :likes
   has_many :tips
 

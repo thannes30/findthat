@@ -1,5 +1,6 @@
 class Venue < ActiveRecord::Base
-  belongs_to :user
-  has_many :likes
+  has_many :checkins
+  has_many :users, through :checkins
   has_many :tips
+  has_many :likes
 end
