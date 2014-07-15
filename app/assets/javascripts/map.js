@@ -46,11 +46,21 @@ $(function() {
     getVenues();
   }
 
+  //check in at venue
   $('#venues').on('click', '.check-in-button', function(e){
     var object = {};
     object.name = $(e.target.parentElement).find('h3 a').html();
     object.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
     checkIn(object);
+  });
+
+  //like venue
+  $('#venues').on('click', '.like-button',function(e){
+    var object = {};
+    object.name = $(e.target.parentElement).find('h3 a').html();
+    object.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
+    addLike(object);
+    // console.log(object);
   });
 
   //search foursquare for my search term around my location
@@ -66,7 +76,7 @@ $(function() {
         // Rebuild the map using data.
         var myOptions = {
           zoom:14,
-          center: new google.maps.LatLng(lat,lng-.02),
+          center: new google.maps.LatLng(lat,lng-.022),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           panControl: false
         },

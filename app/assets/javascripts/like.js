@@ -1,47 +1,52 @@
-function LikeModel(obj){
-  this.user_id = obj.user_id;
-  this.venue_id = obj.venue_id;
-}
+// function LikeModel(obj){
+//   this.user_id = obj.user_id;
+//   this.venue_id = obj.venue_id;
+// }
 
-function LikeView(model){
-  this.model = model;
-  this.el = undefined;
-}
+// function LikeView(model){
+//   this.model = model;
+//   this.el = undefined;
+// }
 
-function LikeCollection(){
-  this.likes = {};
-}
+// function LikeCollection(){
+//   this.likes = {};
+// }
 
-//fetch a user's likes
-LikeCollection.prototype.fetch = function(){
-  var that = this;
-  $.ajax({
-    url: '/venues',
-    method: 'get',
-    dataType: 'json',
-    success: function(data){
-      $.each(data, function(datum){
-        $.each(data[datum].likes, function(likeDatum){
-          console.log(data[datum].likes[likeDatum]);
-          return data[datum].likes[likeDatum];
-        })
-      })
-    }
- })
+// //fetch a user's likes
+// LikeCollection.prototype.fetch = function(){
+//   var that = this;
+//   $.ajax({
+//     url: '/venues',
+//     method: 'get',
+//     dataType: 'json',
+//     success: function(data){
+//       $.each(data, function(datum){
+//         $.each(data[datum].likes, function(likeDatum){
+//           console.log(data[datum].likes[likeDatum]);
+//           return data[datum].likes[likeDatum];
+//         })
+//       })
+//     }
+//  })
+// }
+
+function likeVenue(){
+  var object = {};
+  return object;
 }
 
 //like a venue
-function addLike(){
-  $('.like-button').on('click', function(event){
-    var id = $(event.target).data('id');
+function addLike(obj){
+  var newLike = {'name': obj};
+  var currentUserId = $('.current-user-id').val();
     $.ajax({
-      url: '/venues/likes',
+      url: '/likes',
       method: 'post',
       dataType: 'json',
-      data: {id: id},
+      data: {like: obj},
       success: function(data){
-        $(event.target).remove();
+        console.log(obj);
+        // $(event.target).remove();
       },
     })
-  })
-}
+  }

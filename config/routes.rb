@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/checkins' => 'checkins#index'
   post '/checkins' => 'checkins#create'
 
-  post '/venues/like' => 'venues#like'
+  post '/likes' => 'likes#create'
 
   get '/tips' => 'tips#index'
   post '/tips' => 'tips#create'

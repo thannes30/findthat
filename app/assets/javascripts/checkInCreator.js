@@ -3,8 +3,8 @@
     return object;
   }
 
+  //check in to a venue
   function checkIn(obj){
-    // debugger;
     var newVenue = {'name': obj};
     var currentUserId = $('.current-user-id').val();
       $.ajax({

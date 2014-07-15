@@ -29,13 +29,3 @@ CheckInCollection.prototype.fetch = function(cb){
     }
   })
 }
-
-
-// function addCheckIn(){
-//   $('.check-in-button').on('click', function(event){
-//     var id = $(event.target).data('id');
-//     $.ajax({
-//       url: '/'
-//     })
-//   })
-// }
