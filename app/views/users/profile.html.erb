@@ -1,9 +1,9 @@
 <div class="container">
-  <h3><%= current_user.email %>'s Profile page</h3>
+  <h3>Welcome <%= current_user.email %></h3>
     <div class="row">
 
       <div class="span8">
-        <h3>Check Ins</h3>
+        <h4>Check Ins</h4>
           <ul class="checkins-ul">
             <% @checkins.each do |checkin| %>
             <li class="checkins-li">
@@ -14,6 +14,10 @@
       </div>
 
       <div class="span4">
+        <h4>Likes</h4>
+          <ul class="likes-ul">
+
+          </ul>
       </div>
 
     </div>

@@ -46,6 +46,13 @@ $(function() {
     getVenues();
   }
 
+  $('#venues').on('click', '.check-in-button', function(e){
+    var object = {};
+    object.name = $(e.target.parentElement).find('h3 a').html();
+    object.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
+    checkIn(object);
+  });
+
   //search foursquare for my search term around my location
   function getVenues() {
     $.ajax({
@@ -64,6 +71,7 @@ $(function() {
           panControl: false
         },
         map = new google.maps.Map(document.getElementById('map'), myOptions);
+
 
         // Build markers and elements for venues returned
         $.each( dataobj, function() {
@@ -115,13 +123,6 @@ $(function() {
 
           appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
           $("#venues").append(appendeddatahtml);
-          $('#venues .check-in-button').click(function(e){
-            var object = {};
-            object.name = $(e.target.parentElement).find('h3 a').html();
-            object.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
-            checkIn(object);
-            // debugger;
-          });
 
 
           // Build markers
