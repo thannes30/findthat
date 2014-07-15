@@ -1,7 +1,6 @@
 class VenuesController < ApplicationController
 
 
-
   private
 
   def venue_params

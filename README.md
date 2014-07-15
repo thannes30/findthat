@@ -10,10 +10,7 @@ Users can search locations via Foursquare API and view them displayed using Goog
 <li>Check-in at an unlimited amount of venues.</li>
 </ul>
 
-
-
-
-<h4>Our web app is built using Ruby on Rails 4, HTML 5 Geolocation, Foursquare API V2, and the Google Maps API V3.</h4>
+<h4>The app is built using Ruby on Rails 4, HTML 5 Geolocation, Foursquare API V2, and the Google Maps API V3.</h4>
 
 <h4>Visit us at <a href="http://findthat.herokuapp.com/">findthat.herokuapp.com<
 

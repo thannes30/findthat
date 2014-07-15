@@ -10,9 +10,6 @@ $(function() {
   var icon = "";
   var address = "";
 
-  //added this trying to get map to show up.
-  // map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
   $("#query").click(function(){
     $(this).val("");
   });
@@ -21,7 +18,6 @@ $(function() {
     if ($(this).val() == "") {
       $(this).val("Example: Happy Hour");
     }
-
     if ($(this).val() != "Example: Happy Hour") {
       $(this).addClass("focus");
     } else {
@@ -46,6 +42,8 @@ $(function() {
     getVenues();
   }
 
+  // getTips();
+
   //check in at venue
   $('#venues').on('click', '.check-in-button', function(e){
     var object = {};
@@ -60,8 +58,30 @@ $(function() {
     object.name = $(e.target.parentElement).find('h3 a').html();
     object.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
     addLike(object);
-    // console.log(object);
   });
+
+  //view tips
+  $('#venues').on('click', '.view-tips-button', function(e){
+    var options = {};
+    options.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
+    options.event = e;
+    // debugger;
+    getTips(options);
+    // console.log(object);
+  })
+
+  function getTips(options){
+    $.ajax({
+      type: "GET",
+      url: "https://api.foursquare.com/v2/venues/"+options.venue_id+"/tips?sort=recent&oauth_token=PV3JLPOZHVZ2MF4QIVWDWZE4ZDIKGHAVJJNGMNFVZAS2ADMC&v=20140715",
+      success: function(data){
+        var data = data.response.tips
+        rand = Math.floor((Math.random() * 20) + 1);
+        $(options.event.target.parentElement).append('<p>'+data.items[rand].text+'</p>');
+      }
+    })
+  }
+
 
   //search foursquare for my search term around my location
   function getVenues() {
@@ -73,17 +93,17 @@ $(function() {
         var dataobj = data.response.groups[0].items;
         $("#venues").html("");
 
-        // Rebuild the map using data.
+        // rebuild the map using data
         var myOptions = {
           zoom:14,
-          center: new google.maps.LatLng(lat,lng-.022),
+          center: new google.maps.LatLng(lat,lng-.018),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           panControl: false
         },
         map = new google.maps.Map(document.getElementById('map'), myOptions);
 
 
-        // Build markers and elements for venues returned
+        // build markers and elements for venues returned
         $.each( dataobj, function() {
           if (this.venue.categories[0]) {
             str = this.venue.categories[0].icon.prefix;
@@ -131,13 +151,13 @@ $(function() {
             fsquare_id = this.venue.id;
           }
 
-          appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="like-button">Like</button></div>';
+          appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button></div>';
           $("#venues").append(appendeddatahtml);
 
 
           // Build markers
           var markerImage = {
-          url: "assets/hiker-extra-small.png",
+          url:'assets/hiker-extra-small.png',
           scaledSize: new google.maps.Size(24, 24),
           origin: new google.maps.Point(0,0),
           anchor: new google.maps.Point(24/2, 24)

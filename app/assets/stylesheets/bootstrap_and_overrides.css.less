@@ -1,5 +1,9 @@
 @import "twitter/bootstrap/bootstrap";
 
+a.version:hover {
+  text-decoration: none;
+}
+
 #content {
   height:auto;
   margin-bottom:40px;
@@ -12,22 +16,23 @@
   margin: 10px;
 }
 
+.loading-throbber{
+  margin-bottom: 8px;
+}
+
 .like{
   margin:10px;
 }
 
+.check-in-button, .view-tips-button, .like-button{
+  margin: 5px 5px 5px 0;
+}
+
+.search-button{
+  margin-bottom: 10px;
+}
 
 
-/*html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td { margin:0; padding:0; }
-img { border: 0px; font-family: "Helvetica Neue", Helvetica, arial, sans-serif;}
-/* Force the vertical scrollbar in FF */
 html { overflow-y: scroll; }
 
 .clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
@@ -47,7 +52,6 @@ section .venue {
 }
 
 section h2 {
-  font-family:'Gotham 7r',"Helvetica Neue",Helvetica,Arial,sans-serif;
   color:#2a2a2a;
   margin-bottom:10px;
   font-size:19px;
@@ -77,10 +81,10 @@ section #submit {
   position:relative;
   z-index:100;
   height:600px;
-  width:50%;
+  width:40%;
   overflow-y:auto;
   top:1px;
-  background-color:rgba(0,0,0,0.2);
+  background-color:rgba(0,0,0,0.4);
 }
 
 .venue {
@@ -91,13 +95,6 @@ section #submit {
   width:85%;
   margin:10px auto 10px auto;
   border-radius:10px;
-}
-
-.venue .icon {
-  margin-left:20px;
-  margin-top:10px;
-  width:16px;
-  height:16px;
 }
 
 .rating {

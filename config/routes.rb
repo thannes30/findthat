@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   post '/likes' => 'likes#create'
 
-  get '/tips' => 'tips#index'
-  post '/tips' => 'tips#create'
+  # get '/tips' => 'tips#index'
+  # post '/tips' => 'tips#create'
 
 
 
