@@ -48,12 +48,7 @@ gem 'sorcery'
 
 #bootstrap stuff
 gem 'less-rails'
-gem 'therubyracer',  group: :development
+gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 
 gem 'bootstrap-sass', '~> 3.2.0'
-
-group :assets do
-
-end
-
