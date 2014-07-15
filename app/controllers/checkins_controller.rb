@@ -5,7 +5,7 @@ class CheckinsController < ApplicationController
     if v.nil?
       v = Venue.create(foursquare_venue_id: params[:venue_id], name: params[:name])
     end
-    checkin = Checkin.create(user_id: current_user.id, name: params[:name], :venue_id => v.id)
+    checkin = Checkin.create(user_id: current_user.id, name: params[:checkin][:name], :venue_id => v.id)
 
     render :json => checkin.to_json
   end
