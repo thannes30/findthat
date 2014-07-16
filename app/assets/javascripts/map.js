@@ -157,7 +157,7 @@ $(function() {
 
           // Build markers
           var markerImage = {
-          url:'assets/hiker-extra-small.png',
+          url:'assets/map-marker.png',
           scaledSize: new google.maps.Size(24, 24),
           origin: new google.maps.Point(0,0),
           anchor: new google.maps.Point(24/2, 24)
