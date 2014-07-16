@@ -46,6 +46,8 @@ gem 'hirb', group: :development
 
 gem 'sorcery'
 
+gem 'rails_12factor', group: :production
+
 #bootstrap stuff
 gem 'less-rails'
 gem 'therubyracer'
