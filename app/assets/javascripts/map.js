@@ -57,7 +57,9 @@ $(function() {
     var object = {};
     object.name = $(e.target.parentElement).find('h3 a').html();
     object.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
-    addLike(object);
+    addLike(object).then(function(){
+      $(e.target).fadeOut();
+    });
   });
 
   //view tips

@@ -5,6 +5,7 @@ $(function(){
 
   $('.login-button').on('click', function(){
     $('.background').fadeOut()
+    $('.login-button').fadeOut()
     $('.signup-container').fadeOut()
     if ($('.loginform').css('display') === 'block') {
       $('.loginform').hide(500)

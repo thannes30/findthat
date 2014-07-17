@@ -1,19 +1,22 @@
 <div class="container">
-  <h3>Welcome <%= current_user.email %></h3>
+  <h3 class="welcome">Welcome <%= current_user.email %></h3>
     <div class="row">
+    <div class="span1"></div>
 
-      <div class="span8">
-        <h4>Check Ins</h4>
+      <div class="span5">
+        <h4>Check Ins</h4><h4 class="dateh4">Date</h4>
           <ul class="checkins-ul">
             <% @checkins.each do |checkin| %>
             <li class="checkins-li">
-              <%= checkin.name %><%= checkin.created_at %>
+              <%= checkin.name %><span class="date"><%= checkin.created_at.strftime("%b %d 20%y") %></span>
             </li>
             <% end %>
           </ul>
       </div>
 
-      <div class="span4">
+      <div class="span1"></div>
+
+      <div class="span3">
         <h4>Likes</h4>
           <ul class="likes-ul">
             <% @likes.each do |like| %>
@@ -23,6 +26,8 @@
             <% end %>
           </ul>
       </div>
+
+    <div class="span2"></div>
 
     </div>
 </div>

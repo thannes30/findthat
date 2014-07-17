@@ -13,7 +13,7 @@
         dataType: 'json',
         data: {checkin: obj},
         success: function(data){
-          console.log(obj);
-        }
+          $('.check-in-button').fadeOut();
+        },
       })
     }

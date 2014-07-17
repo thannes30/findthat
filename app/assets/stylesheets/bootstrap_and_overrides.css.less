@@ -1,7 +1,23 @@
 @import "twitter/bootstrap/bootstrap";
 
-a.version:hover {
-  text-decoration: none;
+a:link {
+    color: steelblue;
+}
+
+field action{
+  margin-bottom: -10px;
+}
+
+a:visited {
+    color: steelblue;
+}
+
+a:hover {
+    color: steelblue;
+}
+
+a:active {
+    color: steelblue;
 }
 
 a{
@@ -10,6 +26,11 @@ a{
 
 a:hover{
   text-decoration: none;
+  color: steelblue;
+}
+
+.date{
+  float: right;
 }
 
 #content {
@@ -184,6 +205,54 @@ section #submit {
   text-decoration: none;
 }
 
+ul{
+  list-style:none;
+}
+
+.dateh4{
+  float:right;
+  padding-right:30px;
+  margin-top:-30px;
+}
+
+.welcome{
+  margin-left:9%;
+  padding: 10px 0 10px 0;
+}
+
+.span5{
+  background-color: lightgrey;
+}
+
+.span3{
+  background-color:lightgrey;
+  float:right;
+}
+
+.checkins-li{
+  padding: 5px 0 5px 0;
+  border-bottom: 1px solid steelblue;
+  margin-right:25px;
+}
+
+.checkins-ul{
+  min-height:500px;
+}
+
+.likes-li{
+    padding: 5px 0 5px 5px;
+    border-bottom: 1px solid steelblue;
+    margin-right:25px;
+}
+
+.likes-ul{
+  min-height:500px;
+}
+
+
+h4 {
+  padding-left:25px;
+}
 
 body, nav, h1, h3, p {
   margin: 0;
@@ -191,10 +260,10 @@ body, nav, h1, h3, p {
 }
 
 .logo{
+  -webkit-text-stroke: 2px #ACCCFE;
   width: 200px;
   color:steelblue;
   font-style:italic;
-  -webkit-text-stroke: 2px #ACCCFE;
   padding-top:25px;
   padding-left:5%
 }
@@ -266,32 +335,33 @@ h3 {
   margin-top:-10px;
 }
 
-.signup {
-  color:steelblue;
-  float: right;
-  font-size: 1em;
-  padding-left: 25px;
-}
 .login-button {
   padding-top: -15px;
 }
+
+.signup {
+  font-size: 1em;
+}
+
 .signup-button{
+  float: right;
+  padding-left: 25px;
 }
 
 .signup-container {
+  color:white;
   text-align: center;
-  z-index: 2;
+  z-index: 10;
   width: 25%;
   min-width: 150px;
   padding: 0 2% 2%;
   position: fixed;
-  background-color: #fff;
+  background-color: steelblue;
   top: 30%;
   left: 35%;
-  border: 3px solid grey;
+  border: 5px solid lightgrey;
   padding: 0 1% 1% 0;
   opacity: 1;
-  border-radius: 5px;
 }
 .signup-container h1 {
   margin-bottom: 5%;
@@ -311,29 +381,30 @@ h3 {
 .new_user input[type="submit"] {
   height: 3em;
   width: 20%;
-  background-color: #0e700e;
+  background-color: white;
   border: none;
   margin: 5% auto 0;
   padding: 0;
-  color: #fff;
+  color: steelblue;
   cursor: pointer;
-  border-radius: .3em;
 }
 
 .close-signup {
-  background-color: #eee;
+  color: steelblue;
+  background-color: lightgrey;
   width: 3%;
   height: 3%;
-  padding: 0 1% 0%;
+  padding: -1% 1% 0%;
   font-size: 1.5em;
   float: right;
   margin: 4% 0;
   cursor: pointer;
 }
 
-
-
-
+.close-signup{
+  width:20px;
+  height:20px;
+}
 
 
 
