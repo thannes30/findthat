@@ -84,7 +84,6 @@ $(function() {
     })
   }
 
-
   //search foursquare for my search term around my location
   function getVenues() {
     $.ajax({
