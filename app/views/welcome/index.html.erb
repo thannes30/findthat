@@ -1,6 +1,8 @@
-<form action="#" method="GET" id="searchform">
+<form class="form-inline" action="#" method="GET" id="searchform">
   <input type="text" name="query" id="query" value="Example: Happy Hour">
-  <input class="search-button" type="submit" name="submit" id="submit" value="Near Me">
+  <input type="text" name="zipcode" id="zipcode" value="Enter Zip Code" class="input-sm" style="display:none">
+  <input class="search-button" type="submit" name="submit" id="submit" value="Search">
+  <label for="useGeo"><input type="checkbox" id="usegeo" checked="checked"> Use my current location</label>
   <img class="loading-throbber" src="images/ajax-loader.gif" alternate="loading" style="display:none;">
 </form>
 

@@ -14,6 +14,24 @@ $(function() {
     $(this).val("");
   });
 
+  $("#zipcode").click(function(){
+    $(this).val("");
+  });
+
+  // show/hide zipcode div
+  $(function(){
+    $("#usegeo").on('change', function(){
+      $("#zipcode").slideToggle();
+    });
+  });
+
+  // slide search button over
+    // $("#usegeo").click(function(){
+    //   $("#submit").slideToggle('slow');
+    // });
+
+
+
   $("#query").blur(function(){
     if ($(this).val() == "") {
       $(this).val("Example: Happy Hour");
@@ -41,8 +59,6 @@ $(function() {
       lng = location.coords.longitude;
     getVenues();
   }
-
-  // getTips();
 
   //check in at venue
   $('#venues').on('click', '.check-in-button', function(e){
@@ -84,7 +100,7 @@ $(function() {
     })
   }
 
-  //search foursquare for my search term around my location
+  //search foursquare for my search term around users' current location
   function getVenues() {
     $.ajax({
         type: "GET",
