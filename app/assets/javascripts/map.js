@@ -43,6 +43,17 @@ $(function() {
     }
   });
 
+  $("#zipcode").blur(function(){
+    if ($(this).val() == "") {
+      $(this).val("Enter Zip Code");
+    }
+    if ($(this).val() != "Enter Zip Code") {
+      $(this).addClass("focus");
+    } else {
+      $(this).removeClass("focus");
+    }
+  });
+
   //on submit, get user's location
   $("#searchform").submit(function(event){
     event.preventDefault();
