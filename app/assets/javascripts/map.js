@@ -25,13 +25,6 @@ $(function() {
     });
   });
 
-  // slide search button over
-    // $("#usegeo").click(function(){
-    //   $("#submit").slideToggle('slow');
-    // });
-
-
-
   $("#query").blur(function(){
     if ($(this).val() == "") {
       $(this).val("Example: Happy Hour");
@@ -181,7 +174,6 @@ $(function() {
 
           appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button></div>';
           $("#venues").append(appendeddatahtml);
-
 
           // Build markers
           var markerImage = {
