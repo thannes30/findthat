@@ -10,6 +10,7 @@ $(function() {
   var icon = "";
   var address = "";
   var geocoder = "";
+  var pos = "";
 
   $("#query").click(function(){
     $(this).val("");
@@ -102,9 +103,8 @@ $(function() {
           console.log(results[0].geometry.location.k);
           lat = results[0].geometry.location.lat();
           lng = results[0].geometry.location.lng();
-
-          getVenues();
-        });
+        getVenues();
+      });
     console.log("search by city state")
     //search foursquare for my search term around users' current location
     function getVenues() {
@@ -197,15 +197,17 @@ $(function() {
         getVenues();
       }
 
-    //get location, save it to lat, long
+    //get location, save it to lat, long, and pos for infowindow
     function getLocation(location) {
         lat = location.coords.latitude;
         lng = location.coords.longitude;
-      getVenues();
+        pos = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+      getVenuesByGeo();
     }
-    console.log("get geo");
+    console.log("get venues by geo");
+
     //search foursquare for my search term around users' current location
-    function getVenues() {
+    function getVenuesByGeo() {
       $.ajax({
           type: "GET",
           url: "https://api.foursquare.com/v2/venues/explore?ll="+lat+","+lng+"&client_id=TNDU1XWFBW0AEKBMMYRSXOUCN21HWG4ZH3GS0FBVVY31UC3N&client_secret=1UOTAT2RRP5QUDKXBBO5FCZ4ESQIA2C44X3WWNMDKEQJO4XN&v=20130619&query="+$("#query").val()+"",
@@ -223,7 +225,6 @@ $(function() {
           },
           map = new google.maps.Map(document.getElementById('map'), myOptions);
 
-
           // build markers and elements for venues returned
           $.each( dataobj, function() {
             if (this.venue.categories[0]) {
@@ -233,45 +234,37 @@ $(function() {
             } else {
               icon = "";
             }
-
             if (this.venue.url){
               url = this.venue.url;
             } else {
               url = "";
             }
-
             if (this.venue.contact.formattedPhone) {
               phone = "Phone:"+this.venue.contact.formattedPhone;
             } else {
               phone = "";
             }
-
             if (this.venue.location.address) {
               address = '<p class="subinfo">'+this.venue.location.address;
             } else {
               address = "";
             }
-
             if (this.venue.location.city){
               city = ', '+this.venue.location.city+'<br>';
             } else {
               city = "";
             }
-
             if (this.venue.hours){
               hours = this.venue.hours.status;
             } else {
               hours = "";
             }
-
             if (this.venue.rating) {
               rating = '<span class="rating">'+this.venue.rating+'</span>';
             }
-
             if (this.venue.id) {
               fsquare_id = this.venue.id;
             }
-
             appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button></div>';
             $("#venues").append(appendeddatahtml);
 
@@ -280,21 +273,27 @@ $(function() {
             url:'images/map-marker.png',
             scaledSize: new google.maps.Size(24, 24),
             origin: new google.maps.Point(0,0),
-            anchor: new google.maps.Point(24/2, 24)
+            anchor: new google.maps.Point(24/2, 24),
             },
             markerOptions = {
             map: map,
             position: new google.maps.LatLng(this.venue.location.lat, this.venue.location.lng),
+            id: this.venue.id,
             title: this.venue.name,
             animation: google.maps.Animation.DROP,
             icon: markerImage,
             optimized: false
             },
-            marker = new google.maps.Marker(markerOptions)
+            marker = new google.maps.Marker(markerOptions);
+          });
+          var infowindow = new google.maps.InfoWindow({
+              map: map,
+              position: pos,
+              content: 'You are here.'
           });
         }
       });
-    }
+     } //end getVenuesByGeo
     }; //end else
   }); //end search submit
 
