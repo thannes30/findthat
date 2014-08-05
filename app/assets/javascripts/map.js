@@ -190,15 +190,12 @@ $(function() {
       });
      };
     } else {
-      $("#searchform").submit(function(event){
       event.preventDefault();
-
       if (!lat) {
         navigator.geolocation.getCurrentPosition(getLocation);
       } else {
         getVenues();
       }
-    });
 
     //get location, save it to lat, long
     function getLocation(location) {
