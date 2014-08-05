@@ -75,6 +75,7 @@ $(function() {
     options.event = e;
     getTips(options);
   });
+
   // getTips
   function getTips(options){
     $.ajax({
@@ -88,32 +89,23 @@ $(function() {
     });
   };
 
+  $("#searchform").submit(function(event){
 
+    if(!$("#usegeo").is(':checked')) {
 
-  // function initialize() {
-  //   geocoder = new google.maps.Geocoder();
-  //   }
-
-    // function codeAddress() {
-      $("#searchform").submit(function(event){
         event.preventDefault();
         geocoder = new google.maps.Geocoder();
         var address = $("#citystate").val();
         geocoder.geocode( { 'address': address}, function(results, status) {
-          // (status == google.maps.GeocoderStatus.OK) {
-          // map.setCenter(results[0].geometry.location);
+
           console.log(results[0].geometry.location.B);
           console.log(results[0].geometry.location.k);
           lat = results[0].geometry.location.lat();
           lng = results[0].geometry.location.lng();
-          // var marker = new google.maps.Marker({
-          //     map: map,
-          //     position: results[0].geometry.location
-          // });
+
           getVenues();
         });
-      });
-
+    console.log("search by city state")
     //search foursquare for my search term around users' current location
     function getVenues() {
       $.ajax({
@@ -121,6 +113,106 @@ $(function() {
           url: "https://api.foursquare.com/v2/venues/explore?ll="+lat+","+lng+"&client_id=TNDU1XWFBW0AEKBMMYRSXOUCN21HWG4ZH3GS0FBVVY31UC3N&client_secret=1UOTAT2RRP5QUDKXBBO5FCZ4ESQIA2C44X3WWNMDKEQJO4XN&v=20130619&query="+$("#query").val()+"",
           success: function(data) {
             console.log(data.response.groups[0].items);
+          $("#venues").show();
+          var dataobj = data.response.groups[0].items;
+          $("#venues").html("");
+
+          // rebuild the map using data
+          var myOptions = {
+            zoom:14,
+            center: new google.maps.LatLng(lat,lng-.018),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            panControl: false
+          },
+          map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+          // build markers and elements for venues returned
+          $.each( dataobj, function() {
+            if (this.venue.categories[0]) {
+              str = this.venue.categories[0].icon.prefix;
+              newstr = str.substring(0, str.length - 1);
+              icon = newstr+this.venue.categories[0].icon.suffix;
+            } else {
+              icon = "";
+            }
+            if (this.venue.url){
+              url = this.venue.url;
+            } else {
+              url = "";
+            }
+            if (this.venue.contact.formattedPhone) {
+              phone = "Phone:"+this.venue.contact.formattedPhone;
+            } else {
+              phone = "";
+            }
+            if (this.venue.location.address) {
+              address = '<p class="subinfo">'+this.venue.location.address;
+            } else {
+              address = "";
+            }
+            if (this.venue.location.city){
+              city = ', '+this.venue.location.city+'<br>';
+            } else {
+              city = "";
+            }
+            if (this.venue.hours){
+              hours = this.venue.hours.status;
+            } else {
+              hours = "";
+            }
+            if (this.venue.rating) {
+              rating = '<span class="rating">'+this.venue.rating+'</span>';
+            }
+            if (this.venue.id) {
+              fsquare_id = this.venue.id;
+            }
+            appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button></div>';
+            $("#venues").append(appendeddatahtml);
+
+            // Build markers
+            var markerImage = {
+            url:'images/map-marker.png',
+            scaledSize: new google.maps.Size(24, 24),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(24/2, 24)
+            },
+            markerOptions = {
+            map: map,
+            position: new google.maps.LatLng(this.venue.location.lat, this.venue.location.lng),
+            title: this.venue.name,
+            animation: google.maps.Animation.DROP,
+            icon: markerImage,
+            optimized: false
+            },
+            marker = new google.maps.Marker(markerOptions)
+          });
+        }
+      });
+     };
+    } else {
+      $("#searchform").submit(function(event){
+      event.preventDefault();
+
+      if (!lat) {
+        navigator.geolocation.getCurrentPosition(getLocation);
+      } else {
+        getVenues();
+      }
+    });
+
+    //get location, save it to lat, long
+    function getLocation(location) {
+        lat = location.coords.latitude;
+        lng = location.coords.longitude;
+      getVenues();
+    }
+    console.log("get geo");
+    //search foursquare for my search term around users' current location
+    function getVenues() {
+      $.ajax({
+          type: "GET",
+          url: "https://api.foursquare.com/v2/venues/explore?ll="+lat+","+lng+"&client_id=TNDU1XWFBW0AEKBMMYRSXOUCN21HWG4ZH3GS0FBVVY31UC3N&client_secret=1UOTAT2RRP5QUDKXBBO5FCZ4ESQIA2C44X3WWNMDKEQJO4XN&v=20130619&query="+$("#query").val()+"",
+          success: function(data) {
           $("#venues").show();
           var dataobj = data.response.groups[0].items;
           $("#venues").html("");
@@ -206,7 +298,10 @@ $(function() {
         }
       });
     }
+    }; //end else
+  }); //end search submit
 
+  //before search, show map
   function mapbuild() {
     $("#venues").hide();
     var myOptions = {
@@ -216,8 +311,7 @@ $(function() {
     panControl: false
     },f
     map = new google.maps.Map(document.getElementById('map'), myOptions);
-  }
+  };
 
   mapbuild();
-
 });
