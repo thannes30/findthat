@@ -98,9 +98,6 @@ $(function() {
         geocoder = new google.maps.Geocoder();
         var address = $("#citystate").val();
         geocoder.geocode( { 'address': address}, function(results, status) {
-
-          console.log(results[0].geometry.location.B);
-          console.log(results[0].geometry.location.k);
           lat = results[0].geometry.location.lat();
           lng = results[0].geometry.location.lng();
         getVenues();
