@@ -90,6 +90,24 @@ $(function() {
     });
   };
 
+  $("#venues").on('click', '.get-photos-button', function(e){
+    var response = {};
+    response.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
+    response.event = e;
+    getPhotos(response);
+  })
+
+  function getPhotos(response){
+    $.ajax({
+      type: "GET",
+      url: "https://api.foursquare.com/v2/venues/"+response.venue_id+"/photos&oauth_token=PV3JLPOZHVZ2MF4QIVWDWZE4ZDIKGHAVJJNGMNFVZAS2ADMC&v=20140715",
+      success: function(data){
+        var img = $('<img />', {src: data.response.prefix +"500x500"+ data.response.suffix});
+        img.appendTo("body");
+      }
+    });
+  };
+
   $("#searchform").submit(function(event){
 
     if(!$("#usegeo").is(':checked')) {
@@ -163,7 +181,7 @@ $(function() {
             if (this.venue.id) {
               fsquare_id = this.venue.id;
             }
-            appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button></div>';
+            appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button><button class="get-photos-button">See Photos</button></div>';
             $("#venues").append(appendeddatahtml);
 
             // Build markers
@@ -262,7 +280,7 @@ $(function() {
             if (this.venue.id) {
               fsquare_id = this.venue.id;
             }
-            appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button></div>';
+            appendeddatahtml = '<div class="venue"><h3 data-venue-id="'+fsquare_id+'">'+'<a href='+url+'>'+this.venue.name+'</a>'+rating+'</h3>'+address+city+phone+'<br />'+hours+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p><button class="check-in-button">Check In</button><button class="view-tips-button">View Tips</button><button class="like-button">Like</button><button class="get-photos-button">See Photos</button></div>';
             $("#venues").append(appendeddatahtml);
 
             // Build markers
