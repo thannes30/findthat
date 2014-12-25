@@ -91,26 +91,30 @@ $(function() {
   };
 
   $("#venues").on('click', '.get-photos-button', function(e){
-    var response = {};
-    response.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
-    response.event = e;
-    getPhotos(response);
+    var options = {};
+    options.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
+    options.event = e;
+    getPhotos(options);
   })
 
-  function getPhotos(response){
+  function getPhotos(options){
     $.ajax({
       type: "GET",
-      url: "https://api.foursquare.com/v2/venues/"+response.venue_id+"/photos&oauth_token=PV3JLPOZHVZ2MF4QIVWDWZE4ZDIKGHAVJJNGMNFVZAS2ADMC&v=20140715",
+      dataType: "JSONP",
+      // url: "https://api.foursquare.com/v2/venues/"+options.venue_id+"/photos&oauth_token=PV3JLPOZHVZ2MF4QIVWDWZE4ZDIKGHAVJJNGMNFVZAS2ADMC&v=20140715",
+      url: "https://api.foursquare.com/v2/venues/"+options.venue_id+"/photos",
       success: function(data){
-        var img = $('<img />', {src: data.response.prefix +"500x500"+ data.response.suffix});
+        var img = $('<img />', {src: "https://irs0.4sqi.net/img/general/300x500/2341723_vt1Kr-SfmRmdge-M7b4KNgX2_PHElyVbYL65pMnxEQw.jpg"});
+        console.log(data.response);
+        // var img = $('<img />', {src: "data.options.prefix" +"500x500"+ "data.options.suffix"});
+        // var img = "https://irs0.4sqi.net/img/general/300x500/2341723_vt1Kr-SfmRmdge-M7b4KNgX2_PHElyVbYL65pMnxEQw.jpg"
         img.appendTo("body");
       }
     });
   };
 
   $("#searchform").submit(function(event){
-
-    if(!$("#usegeo").is(':checked')) {
+    if(!$("#usegeo").is(':checked')){
 
         event.preventDefault();
         geocoder = new google.maps.Geocoder();
