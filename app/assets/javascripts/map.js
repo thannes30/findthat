@@ -116,9 +116,11 @@ $(function() {
         var prefix = data.response.photos.items[0].prefix;
         var suffix = data.response.photos.items[0].suffix;
         var url = prefix+'500x500'+suffix;
-        var img = $('<img />', {src: 'data.options.prefix'+'500x500'+'data.options.suffix'});
+        url.toString();
+        // var img = $('<img />', {src: url});
         var size = "500x500"
-        var img = $("<img src=" + url +"</img>");
+        // var img = $("<img src=" + url +"</img>");
+        var img = $("<img src='" +url+"'>");
         console.log(url);
         console.log(img);
         // var img = "https://irs0.4sqi.net/img/general/300x500/2341723_vt1Kr-SfmRmdge-M7b4KNgX2_PHElyVbYL65pMnxEQw.jpg";
