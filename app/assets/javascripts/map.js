@@ -90,24 +90,38 @@ $(function() {
     });
   };
 
+  //getPhotos
   $("#venues").on('click', '.get-photos-button', function(e){
     var options = {};
     options.venue_id = $(e.target.parentElement).find('h3').data('venue-id');
     options.event = e;
     getPhotos(options);
   })
-
-  function getPhotos(options){
+  // getThemPhotos
+  function getPhotos(options, e){
+    console.log(options.venue_id)
     $.ajax({
       type: "GET",
       dataType: "JSONP",
-      // url: "https://api.foursquare.com/v2/venues/"+options.venue_id+"/photos&oauth_token=PV3JLPOZHVZ2MF4QIVWDWZE4ZDIKGHAVJJNGMNFVZAS2ADMC&v=20140715",
-      url: "https://api.foursquare.com/v2/venues/"+options.venue_id+"/photos",
+      url: "https://api.foursquare.com/v2/venues/"+options.venue_id+"/photos?&client_id=TNDU1XWFBW0AEKBMMYRSXOUCN21HWG4ZH3GS0FBVVY31UC3N&client_secret=1UOTAT2RRP5QUDKXBBO5FCZ4ESQIA2C44X3WWNMDKEQJO4XN&v=20130619",
+      // "https://api.foursquare.com/v2/venues/"+options.venue_id+"/tips?sort=recent&oauth_token=PV3JLPOZHVZ2MF4QIVWDWZE4ZDIKGHAVJJNGMNFVZAS2ADMC&v=20140715",
+      // &client_id=TNDU1XWFBW0AEKBMMYRSXOUCN21HWG4ZH3GS0FBVVY31UC3N&client_secret=1UOTAT2RRP5QUDKXBBO5FCZ4ESQIA2C44X3WWNMDKEQJO4XN&v=20130619
+      // https://api.foursquare.com/v2/venues/VENUE_ID/photos
       success: function(data){
-        var img = $('<img />', {src: "https://irs0.4sqi.net/img/general/300x500/2341723_vt1Kr-SfmRmdge-M7b4KNgX2_PHElyVbYL65pMnxEQw.jpg"});
-        console.log(data.response);
-        // var img = $('<img />', {src: "data.options.prefix" +"500x500"+ "data.options.suffix"});
-        // var img = "https://irs0.4sqi.net/img/general/300x500/2341723_vt1Kr-SfmRmdge-M7b4KNgX2_PHElyVbYL65pMnxEQw.jpg"
+
+        // var img = $('<img />', {src: "https://irs0.4sqi.net/img/general/300x500/2341723_vt1Kr-SfmRmdge-M7b4KNgX2_PHElyVbYL65pMnxEQw.jpg"});
+        console.log(data.response.photos.items[0].prefix);
+        console.log(data.response.photos.items[0].suffix);
+
+        var prefix = data.response.photos.items[0].prefix;
+        var suffix = data.response.photos.items[0].suffix;
+        var url = prefix+'500x500'+suffix;
+        // var img = $('<img />', {src: 'data.options.prefix'+'500x500'+'data.options.suffix'});
+        var size = "500x500"
+        var img = $("<img src=" + data.options.photos.items[0].prefix + "500x500" + data.options.photos.items[0].suffix +"</img>");
+        console.log(url);
+        console.log(img);
+        // var img = "https://irs0.4sqi.net/img/general/300x500/2341723_vt1Kr-SfmRmdge-M7b4KNgX2_PHElyVbYL65pMnxEQw.jpg";
         img.appendTo("body");
       }
     });
