@@ -1,5 +1,7 @@
 <h1>findthat</h1>
 
+10/14/15 - Added functionality to view photos from venues.
+
 <h2>User has the option to search for businesses/locations near their location via HTML5 Geolocation API, or enter a destination to search near. Results, business information, and user tips are taken from Foursquare API and displayed using Google Maps API V3.</h2>
 
 <h3>findthat allows you to view any venue near your current location, and either checkin, view comments, or like the venue so you can remember to stop by next time!</h3>
